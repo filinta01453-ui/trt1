@@ -1,18 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>TRT TV</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>androidTV</title>
+
+<style>
+body{
+background:black;
+margin:0;
+color:white;
+font-family:sans-serif;
+}
+
+h1{
+color:cyan;
+margin-left:10px;
+}
+
+video{
+width:100%;
+height:auto;
+background:black;
+}
+
+button{
+width:90%;
+margin:20px;
+padding:20px;
+font-size:25px;
+background:#ddd;
+border:none;
+border-radius:10px;
+color:red;
+}
+</style>
 </head>
 
-<body style="margin:0">
+<body>
 
-<iframe 
-src="player.html"
-width="100%" 
-height="100%" 
-style="border:none; position:fixed; top:0; left:0;">
-</iframe>
+<h1>android TV</h1>
+
+<video id="player" controls playsinline></video>
+
+<button onclick="trt1()">TRT1</button>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<script>
+
+var video = document.getElementById('player');
+
+function trt1(){
+
+var url = "https://tv-trt1.medya.trt.com.tr/master.m3u8";
+
+if(Hls.isSupported()){
+
+var hls = new Hls();
+
+hls.loadSource(url);
+
+hls.attachMedia(video);
+
+hls.on(Hls.Events.MANIFEST_PARSED,function(){
+
+video.play();
+
+});
+
+}else{
+
+video.src = url;
+
+video.play();
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
