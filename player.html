@@ -21,7 +21,7 @@ height:100vh;
 <body>
 
 <video id="video" controls autoplay></video>
-
+<button onclick="openFullscreen()">Tam Ekran</button>
 <script>
 
 var video = document.getElementById('video');
@@ -33,7 +33,20 @@ hls.loadSource(videoSrc);
 hls.attachMedia(video);
 }
 
-</script>
+function openFullscreen() {
 
+var elem = document.getElementById("video");
+
+if (elem.requestFullscreen) {
+elem.requestFullscreen();
+} else if (elem.webkitRequestFullscreen) {
+elem.webkitRequestFullscreen();
+} else if (elem.msRequestFullscreen) {
+elem.msRequestFullscreen();
+}
+
+}
+  </script>
 </body>
+
 </html>
